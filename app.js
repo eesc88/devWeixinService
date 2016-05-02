@@ -7,6 +7,7 @@ var AV = require('leanengine');
 var users = require('./routes/users');
 var todos = require('./routes/todos');
 var index = require('./routes/index');
+var guess = require('./routes/guess');
 var cloud = require('./cloud');
 
 var app = express();
@@ -35,6 +36,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/todos', todos);
 app.use('/users', users);
 app.use('/index', index);
+app.use('/guess', index);
 
 app.get('/', function(req, res) {
   res.redirect('/index');

@@ -14,3 +14,14 @@ var PORT = parseInt(process.env.LC_APP_PORT || 3000);
 var server = app.listen(PORT, function () {
   console.log('Node app is running, port:', PORT);
 });
+
+var io = require('socket.io').listen(server);
+io.sockets.on('connection', function(socket){
+    console.log("Connection " + socket.id + " accepted.");
+    socket.on('message', function(message){
+        console.log("Received message: " + message + " - from client " + socket.id);
+    });
+    socket.on('disconnect', function(){
+        console.log("Connection " + socket.id + " terminated.");
+    });
+});
